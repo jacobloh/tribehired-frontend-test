@@ -1,0 +1,14 @@
+<div fxLayout="row wrap" fxLayoutAlign="start center">
+  <ng-container *ngFor="let post of posts">
+    <mat-card class="example-card" (click)="gotoDetailPage(post.id)">
+      <mat-card-header>
+        <mat-card-title>{{post.title}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{post.body}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</div>

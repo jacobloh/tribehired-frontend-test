@@ -1,0 +1,53 @@
+<div class="detail-page mat-elevation-z8">
+  <div class="full-width" style="margin-bottom: 20px;">
+    <button mat-mini-fab color="primary" (click)="goBack()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+  </div>
+
+  <h1>{{details.title}}</h1>
+  <h3>{{details.body}}</h3>
+
+  <mat-divider></mat-divider>
+  <div class="table-comment">
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Keyword"
+        #input
+      />
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th style="width: 200px;" mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th style="width: 200px;" mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <!-- Body Column -->
+      <ng-container matColumnDef="body">
+        <th style="width: 400px;" mat-header-cell *matHeaderCellDef>Body</th>
+        <td mat-cell *matCellDef="let element">{{ element.body }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">
+          No data matching the filter "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
